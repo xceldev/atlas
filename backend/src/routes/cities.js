@@ -1,9 +1,16 @@
 const express = require('express')
 
+const controller = require('../controllers/city')
+
 const router = express.Router()
 
-router.get('/', (request, response) => {
-  response.status(200).send({ message: 'GET method for Cities!' })
-})
+router.route('/')
+  .get(controller.findAll)
+  .post(controller.create)
+
+router.route('/:id')
+  .get(controller.findOne)
+  .put(controller.update)
+  .delete(controller.delete)
 
 module.exports = router
