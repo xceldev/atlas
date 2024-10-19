@@ -8,16 +8,30 @@ class City extends Model {}
 
 City.init({
   name: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   code: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isAlpha: true,
+      isUppercase: true,
+      len: [2, 3]
+    }
   }
 }, {
   sequelize,
   modelName: 'city'
 })
 
-City.belongsTo(Region)
+City.belongsTo(Region, {
+  foreignKey: {
+    allowNull: false
+  }
+})
 
 module.exports = City

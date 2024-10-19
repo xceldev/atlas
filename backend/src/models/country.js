@@ -6,10 +6,21 @@ class Country extends Model {}
 
 Country.init({
   name: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   code: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isAlpha: true,
+      isUppercase: true,
+      len: 3
+    }
   }
 }, {
   sequelize,

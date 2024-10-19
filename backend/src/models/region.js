@@ -8,16 +8,30 @@ class Region extends Model {}
 
 Region.init({
   name: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   code: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isAlpha: true,
+      isUppercase: true,
+      len: [2, 3]
+    }
   }
 }, {
   sequelize,
   modelName: 'region'
 })
 
-Region.belongsTo(Country)
+Region.belongsTo(Country, {
+  foreignKey: {
+    allowNull: false
+  }
+})
 
 module.exports = Region
