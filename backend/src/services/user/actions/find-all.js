@@ -2,7 +2,7 @@ const User = require('../../../models/user')
 
 module.exports = async () => {
   try {
-    const users = await User.findAll()
+    const users = await User.scope('withoutPassword').findAll()
     return { ok: true, data: users }
   } catch (error) {
     console.error(error)

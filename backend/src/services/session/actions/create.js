@@ -1,16 +1,16 @@
 const { ValidationError } = require('sequelize')
 
-const Country = require('../../../models/country')
+const Session = require('../../../models/session')
 
 module.exports = async (object) => {
   try {
-    const country = await Country.create(object)
-    return { ok: true, data: country }
+    const session = await Session.create(object)
+    return { ok: true, data: session }
   } catch (error) {
     if (error instanceof ValidationError) {
       return {
         ok: false,
-        error: 'Country could not be created! Check validation rules!',
+        error: 'Session could not be created! Check validation rules!',
         stack: error
       }
     }

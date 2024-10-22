@@ -7,7 +7,7 @@ const {
   hashPassword,
   validatePassword,
   validateUsername
-} = require('./helpers')
+} = require('../../helpers/user')
 
 const { Op, ValidationError } = sequelize
 

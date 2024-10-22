@@ -7,7 +7,7 @@ const {
   hashPassword,
   validatePassword,
   validateUsername
-} = require('./helpers')
+} = require('../../helpers/user')
 
 module.exports = async (object) => {
   try {
@@ -41,9 +41,9 @@ module.exports = async (object) => {
         error: 'User could not be created! Check validation rules!',
         stack: error
       }
-
-      console.error(error)
-      throw new Error('Internal server error!')
     }
+
+    console.error(error)
+    throw new Error('Internal server error!')
   }
 }

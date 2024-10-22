@@ -13,16 +13,20 @@ User.init({
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false,
-    get: () => {
-      return '<classified content>'
-    }
+    allowNull: false
   },
   active: {
     type: DataTypes.BOOLEAN,
     defaultValue: false
   }
 }, {
+  scopes: {
+    withoutPassword: {
+      attributes: {
+        exclude: ['password']
+      }
+    }
+  },
   sequelize,
   modelName: 'user'
 })

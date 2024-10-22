@@ -18,7 +18,7 @@ module.exports = async (id, object) => {
     const country = await Country.findOne({ where: { id: countryId ? countryId : 0 } })
 
     if (!country) {
-      return { ok: false, error: 'Country not found!'}
+      return { ok: false, error: 'Country not found!' }
     }
 
     const regions = await Region.count({

@@ -18,7 +18,7 @@ module.exports = async (id, object) => {
     const region = await Region.findOne({ where: { id: regionId ? regionId : 0 } })
 
     if (!region) {
-      return { ok: false, error: 'Region not found!'}
+      return { ok: false, error: 'Region not found!' }
     }
     
     const cities = await City.count({

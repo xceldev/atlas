@@ -2,7 +2,7 @@ const User = require('../../../models/user')
 
 module.exports = async (id) => {
   try {
-    const user = await User.findOne({
+    const user = await User.scope('withoutPassword').findOne({
       where: { id }
     })
 
