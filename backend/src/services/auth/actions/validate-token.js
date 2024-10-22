@@ -1,6 +1,7 @@
 const Session = require('../../../models/session')
+const User = require('../../../models/user')
 
-const { verify } = require('../../helpers/auth')
+const { decode, verify } = require('../../helpers/auth')
 
 module.exports = async (object) => {
   try {
@@ -20,6 +21,19 @@ module.exports = async (object) => {
     const test = verify(token)
 
     if (!test) {
+      return { ok: false, error: 'Invalid token!' }
+    }
+
+    const { sub } = decode(token)
+
+    const user = await User.findOne({
+      where: {
+        active: true,
+        username: sub
+      }
+    })
+
+    if (!user) {
       return { ok: false, error: 'Invalid token!' }
     }
 

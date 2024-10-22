@@ -19,8 +19,6 @@ module.exports = (user, isRefreshToken) => {
       expiresIn: isRefreshToken ? (expiration * 2) : expiration
     }
 
-    console.log(options)
-
     return jwt.sign(payload, secretKey, options)
   } catch (error) {
     console.error(error)

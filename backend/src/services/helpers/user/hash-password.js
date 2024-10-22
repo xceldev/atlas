@@ -8,7 +8,7 @@ module.exports = (password) => {
     const hashedPassword = bcrypt.hashSync(password, salt)
     return hashedPassword
   } catch (error) {
-    console.log(error)
+    console.error(error)
     throw new Error('Internal server error!')
   }
 }

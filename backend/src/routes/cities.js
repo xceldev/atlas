@@ -2,15 +2,17 @@ const express = require('express')
 
 const controller = require('../controllers/city')
 
+const middleware = require('../middlewares/auth')
+
 const router = express.Router()
 
 router.route('/')
-  .get(controller.findAll)
-  .post(controller.create)
+  .get(middleware, controller.findAll)
+  .post(middleware, controller.create)
 
 router.route('/:id')
-  .get(controller.findOne)
-  .put(controller.update)
-  .delete(controller.delete)
+  .get(middleware, controller.findOne)
+  .put(middleware, controller.update)
+  .delete(middleware, controller.delete)
 
 module.exports = router

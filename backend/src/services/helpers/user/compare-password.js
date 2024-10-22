@@ -7,7 +7,7 @@ module.exports = (test, password) => {
     bcrypt.genSaltSync(SALT_ROUNDS)
     return bcrypt.compareSync(test, password)
   } catch (error) {
-    console.log(error)
+    console.error(error)
     throw new Error('Internal server error!')
   }
 }

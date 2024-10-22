@@ -8,7 +8,12 @@ module.exports = async (object) => {
   try {
     const { username, password } = getUserProperties(object)
 
-    const user = await User.findOne({ where: { username } })
+    const user = await User.findOne({
+      where: {
+        active: true,
+        username
+      }
+    })
 
     if (!user || !comparePassword(password, user.password)) {
       return { ok: false, error: 'Incorrect user or password!' }
