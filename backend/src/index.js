@@ -3,9 +3,13 @@ const express = require('express')
 const sequelize = require('./config/database')
 const router = require('./routes')
 
-sequelize.sync().then(() => {
-  console.log('Database connected!')
-})
+sequelize.authenticate()
+  .then(() => {
+    console.log('Database connected!')
+  })
+  .catch((error) => {
+    console.error('Unable to connect to database:', error)
+  })
 
 const app = express()
 

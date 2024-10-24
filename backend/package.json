@@ -2,6 +2,17 @@
   "name": "backend",
   "version": "1.0.0",
   "scripts": {
+    "database:create": "npm run migrate && npm run seed:all",
+    "database:drop": "npm run seed:undo:all && npm run migrate:undo:all",
+    "migration:generate": "npx sequelize-cli migration:generate --migrations-path=src/migrations --name $NAME",
+    "migrate": "npx sequelize-cli db:migrate --migrations-path=src/migrations",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo --migrations-path=src/migrations --name $NAME",
+    "migrate:undo:all": "npx sequelize-cli db:migrate:undo:all --migrations-path=src/migrations",
+    "seed:generate": "npx sequelize-cli seed:generate --seeders-path=src/seeders --name $NAME",
+    "seed": "npx sequelize-cli db:seed --seeders-path=src/seeders --seed $NAME",
+    "seed:all": "npx sequelize-cli db:seed:all --seeders-path=src/seeders",
+    "seed:undo": "npx sequelize-cli db:seed:undo --seeders-path=src/seeders --seed $NAME",
+    "seed:undo:all": "npx sequelize-cli db:seed:undo:all --seeders-path=src/seeders",
     "start": "nodemon src/index.js"
   },
   "author": "xceldev",
